@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>inheritance</h1>
+				</section>
+				<section>
+					<section>
+						<h2  style="color:rgb(23, 141, 238);">object</h2>
+						<p class="fragment" data-fragment-index="0"><span style="color:rgb(23, 141, 238);">Objects</span> 
+							are pairs of unique keys with corresponding values ​​— such pairs are called properties.
+						</p>
+						<pre class="fragment" data-fragment-index="1"><code>
+const user = {
+  name: "Dmitry",
+  age: 24
+};
+						</code></pre>
+						<img data-src="img/object-person-1@2x.png" height="250px"  class="fragment" data-fragment-index="2"></img>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 style="color:rgb(23, 141, 238);">class</h2>
+						<p class="fragment" data-fragment-index="0"><span style="color:rgb(23, 141, 238);">Class</span> 
+ is a convenient “syntactic sugar” for specifying the constructor along with the prototype.</p>
+						<pre class="fragment" data-fragment-index="1"><code>
+class Name [extends Parent]  {
+  constructor
+  methods
+}
+</code></pre>
+					</section>
+					<section>
+						<h2 style="color:rgb(23, 141, 238);">class</h2>
+						<pre class="fragment" data-fragment-index="0"><code>class User {
+
+  constructor(name) {
+    this.name = name;
+  }
+  
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+let user = new User("Dmitry");
+user.sayHi(); // Dmitry
+</code></pre>
+					</section>
+                    
+				</section>
+				<section>
+					<section>
+						<h2>Classes in JS <span style="color:rgb(23, 141, 238);">functions</span></h2>
+						<pre><code>
+function Animals(name) {
+    this.name = name;
+}
+						</code></pre>				
+						<img data-src="img/class-0.png" style="width: 50%;" />
+					</section>
+					<section>
+						<h2>Classes in JS <span style="color:rgb(23, 141, 238);">functions</span></h2>
+						<pre><code>
+Animals.prototype.run = function(speed) {
+    console.log(this.name + ': "' + speed + '"');
+}
+						</code></pre>
+						<img data-src="img/class-1.png" style="width: 50%;" />
+					</section>
+					<section>
+						<h2>Classes in JS <span style="color:rgb(23, 141, 238);">functions</span></h2>
+						<pre><code>let bear = new Animals('Bear');</code></pre>
+						<img data-src="img/class-2.png" style="width: 50%;" />
+					</section>
+					<section>
+						<h2>Classes in JS <span style="color:rgb(23, 141, 238);">functions</span></h2>
+						<img data-src="img/fu.gif" style="width: 50%;" />
+					</section>
+				</section>
+				<section>
+                        <h2><span style="color:rgb(23, 141, 238);">Inheritance</span> in JS</h2>
+                        <ul>
+                            <li><span style="color:rgb(23, 141, 238);">Crockford</span> way</li>
+                            <li><span style="color:rgb(23, 141, 238);">ES5</span> way</li>
+                            <li><span style="color:rgb(23, 141, 238);">ES2015</span> way</li>
+                        </ul>
+				</section>
+				<section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<pre class="minimal-code"><code>
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.superclass = Parent.prototype; // optional
+}
+						</code></pre>
+						<img data-src="img/class-2.png" style="width: 50%;" />
+					</section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<pre><code>
+function AnimalsCat(name) {
+    AnimalsCat.superclass.constructor.call(this, name);
+}
+						</code></pre>	
+						<img data-src="img/inheritance-1.png" style="width: 70%;" />
+					</section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<pre><code>
+extend(AnimalsCat, Animals);
+						</code></pre>	
+						<pre><code>
+Child.prototype = Object.create(Parent.prototype);
+						</code></pre>
+						<img data-src="img/inheritance-1-1.png" style="width: 70%;" />
+					</section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<img data-src="img/inheritance-1-5.png" style="width: 70%;" />
+					</section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<pre><code>
+Child.prototype.constructor = Child;
+						</code></pre>	
+						<img data-src="img/inheritance-2.png" style="width: 70%;" />
+					</section>
+					<section>
+						<h2>Inheritance <span style="color:rgb(23, 141, 238);">ES5 way</span></h2>
+						<pre><code>
+Child.superclass = Parent.prototype;
+						</code></pre>	
+						<img data-src="img/inheritance-3.png" style="width: 70%;" />
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Conclusion</h2>
+					</section>
+					<section>
+						<img data-src="img/lucas.gif" style="width: 50%;" />
+					</section>
+					<section>
+						<img data-src="img/bye.gif" style="width: 50%;" />
+					</section>
+				</section>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
